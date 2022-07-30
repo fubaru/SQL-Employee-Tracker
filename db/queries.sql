@@ -1,6 +1,9 @@
 -- running all read commands in SQL so you don't have to type it out in terminal
 USE employee_db;
 
+SELECT * FROM department;
+SELECT * FROM role;
+
 SELECT 
 employee.id,
 employee.first_name,
