@@ -1,0 +1,1 @@
+-- running all read commands in SQL so you don't have to type it out in terminal
