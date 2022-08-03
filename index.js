@@ -1,10 +1,11 @@
 const inquirer = require("inquirer");
 const db = require("./config/connection");
 
+// if this connects successfully, then it will execute the call back of menu(). Call back is similar to a promise, execution order
 db.connect( ()=>{
     menu()
 });
-
+// view = Read get request, add = create post request, update=put request
 const menuQuestions = [
     {
         type:"list",
@@ -14,11 +15,21 @@ const menuQuestions = [
     }
 ]
 
+const updateEmployee = [{
+
+}]
+
 const employeeAddQuestions = [
     {
         type:"input",
-        name:"last_name",
+        name:"first_name",
         message:"What is your first name?",
+
+    },
+    {
+        type:"input",
+        name:"last_name",
+        message:"What is your last name?",
 
     }
 ]
