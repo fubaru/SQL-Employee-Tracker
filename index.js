@@ -46,7 +46,7 @@ function viewDepartments() {
 
 function addEmployees() {
     db.query("select title as name, id as value from role", (err, roleData) => {
-        db.query(`SELECT CONCAT(mgr.first_name, " ", last_name) as name, id as value from employee where manager_id is null`, (err, managerData) => {
+        db.query(`SELECT CONCAT(first_name, " ", last_name) as name, id as value from employee where manager_id is null`, (err, managerData) => {
             const employeeAddQuestions = [
                 {
                     type: "input",
