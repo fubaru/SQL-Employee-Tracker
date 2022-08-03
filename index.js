@@ -34,6 +34,8 @@ function menu() {
                 viewRoles()
             }else if (res.menu === "add an employee") {
                 addEmployees()
+            }else if (res.menu === "add a department") {
+                addDepartments()
             }
         })
 }
@@ -52,6 +54,24 @@ function viewDepartments() {
     })
 }
 
+function addDepartments() {
+    db.query("SELECT * FROM department", (err, departmentData)=>{
+        const departmentAddQuestions = [
+            {
+                type: "input",
+                name: "departmentName",
+                message: "What is the department name?"
+            }
+        ]
+        inquirer.prompt(departmentAddQuestions)
+                .then(res=>{
+                    const parameters=[res.departmentName]
+                    db.query("INSERT INTO department(name) VALUES(?)",parameters,(err,data)=>{
+                        viewDepartments()
+                    })
+                })
+    })
+}
 
 function addEmployees() {
     db.query("select title as name, id as value from role", (err, roleData) => {
