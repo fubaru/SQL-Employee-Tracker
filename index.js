@@ -28,10 +28,19 @@ function menu() {
         .then(res => {
             if (res.menu === "view all employees") {
                 viewEmployees()
-            } else if (res.menu === "add an employee") {
+            }else if (res.menu === "view all departments") {
+                viewDepartments()
+            }else if (res.menu === "add an employee") {
                 addEmployees()
             }
         })
+}
+
+function viewDepartments() {
+    db.query(`SELECT * FROM department;`,(err,data)=>{
+        console.table(data)
+        menu()
+    })
 }
 
 
