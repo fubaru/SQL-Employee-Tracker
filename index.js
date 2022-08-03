@@ -30,10 +30,19 @@ function menu() {
                 viewEmployees()
             }else if (res.menu === "view all departments") {
                 viewDepartments()
+            }else if (res.menu === "view all roles") {
+                viewRoles()
             }else if (res.menu === "add an employee") {
                 addEmployees()
             }
         })
+}
+
+function viewRoles() {
+    db.query(`SELECT * FROM role;`,(err,data)=>{
+        console.table(data)
+        menu()
+    })
 }
 
 function viewDepartments() {
