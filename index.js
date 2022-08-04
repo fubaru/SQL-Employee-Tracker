@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const { title } = require("process");
 const db = require("./config/connection");
 
 require("console.table")
@@ -36,6 +37,8 @@ function menu() {
                 addEmployees()
             }else if (res.menu === "add a department") {
                 addDepartments()
+            }else if (res.menu === "add a role") {
+                addRoles()
             }
         })
 }
@@ -71,6 +74,41 @@ function addDepartments() {
                     })
                 })
     })
+}
+
+function addRoles() {
+    db.query("SELECT name as name, id as value FROM department",(err,departData)=>{
+        db.query(`SELECT * FROM role`, (err,roleData)=>{
+            const roleAddQuestions = [
+                {
+                    type: "input",
+                    name: "title",
+                    message: "What is the new role?"
+                },
+                {
+                    type: "number",
+                    name: "salary",
+                    message: "What is the role's salary?"
+                },
+                {
+                    type: "list",
+                    name: "department_id",
+                    message: "Which department does the role belong to?",
+                    choices: departData
+                }
+            ]
+            inquirer.prompt(roleAddQuestions)
+                    .then(res=>{
+                        const parameters=[res.title, res.salary, res.department_id]
+                        db.query("INSERT INTO role (title,salary,department_id)VALUES(?,?,?)",parameters,(err,data)=>{
+                            viewRoles()
+                        
+                        })
+                    })
+
+        })
+    })
+    
 }
 
 function addEmployees() {
