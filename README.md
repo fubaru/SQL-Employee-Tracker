@@ -38,7 +38,7 @@ Instructor Phil Loy and ikra-rafi on her help with the update employee function.
 
 ## Badges
 
-![badmath]()
+![badmath](https://img.shields.io/badge/JavaScript-100%25-yellow)
 
 ## Features
 
